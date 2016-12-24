@@ -1,2 +1,6 @@
 django
 wagtail
+
+django-environ
+psycopg2
+whitenoise
