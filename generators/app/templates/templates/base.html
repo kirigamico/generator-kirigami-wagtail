@@ -1,44 +1,36 @@
-{% templatetag openblock %} load static wagtailuserbar {% templatetag closeblock %}
+{% load static wagtailuserbar %}
 
 <!DOCTYPE html>
 <!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <title>
-            {% templatetag openblock %} block title %}
-                {% templatetag openblock %} if self.seo_title %}{% templatetag openvariable %} self.seo_title {% templatetag closevariable %}{% templatetag openblock %} else %}{% templatetag openvariable %} self.title {% templatetag closevariable %}{% templatetag openblock %} endif %}
-            {% templatetag openblock %} endblock %}
-            {% templatetag openblock %} block title_suffix %}
-                {% templatetag openblock %} with self.get_site.site_name as site_name %}
-                    {% templatetag openblock %} if site_name %}- {% templatetag openvariable %} site_name {% templatetag closevariable %}{% templatetag openblock %} endif %}
-                {% templatetag openblock %} endwith %}
-            {% templatetag openblock %} endblock %}
-        </title>
-        <meta name="description" content="" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>{% block title %}{% if self.seo_title %}{{ self.seo_title }}{% else %}{{ self.title }}{% endif %}{% endblock %}{% block title_suffix %}{% with self.get_site.site_name as site_name %}{% if site_name %}- {{ site_name }}{% endif %}{% endwith %}{% endblock %}</title>
+    <meta name="description" content="" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        {% templatetag opencomment %} Global stylesheets {% templatetag closecomment %}
-        <link rel="stylesheet" type="text/css" href="{% templatetag openblock %} static 'css/{{ project_name }}.css' {% templatetag closeblock %}">
+    {% comment %} Global stylesheets {% endcomment %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main.css' %}">
 
-        {% templatetag openblock %} block extra_css {% templatetag closeblock %}
-            {% templatetag opencomment %} Override this in templates to add extra stylesheets {% templatetag closecomment %}
-        {% templatetag openblock %} endblock {% templatetag closeblock %}
-    </head>
+    {% block extra_css %}
+    {% comment %} Override this in templates to add extra stylesheets {% endcomment %}
+    {% endblock %}
+  </head>
 
-    <body class="{% templatetag openblock %} block body_class {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}">
-        {% templatetag openblock %} wagtailuserbar {% templatetag closeblock %}
+  <body class="{% block body_class %}{% endblock %}">
+    {% wagtailuserbar %}
 
-        {% templatetag openblock %} block content {% templatetag closeblock %}{% templatetag openblock %} endblock {% templatetag closeblock %}
+    {% block content %}{% endblock %}
 
-        {% templatetag opencomment %} Global javascript {% templatetag closecomment %}
-        <script type="text/javascript" src="{% templatetag openblock %} static 'js/{{ project_name }}.js' {% templatetag closeblock %}"></script>
+    {% comment %} Global javascript {% endcomment %}
+    <script type="text/javascript" src="{% static 'scripts/vendor.js' %}"></script>
+    <script type="text/javascript" src="{% static 'scripts/main.js' %}"></script>
 
-        {% templatetag openblock %} block extra_js {% templatetag closeblock %}
-            {% templatetag opencomment %} Override this in templates to add extra javascript {% templatetag closecomment %}
-        {% templatetag openblock %} endblock {% templatetag closeblock %}
-    </body>
+    {% block extra_js %}
+    {% comment %} Override this in templates to add extra javascript {% endcomment %}
+    {% endblock %}
+  </body>
 </html>

@@ -11,17 +11,35 @@ module.exports = Generator.extend({
       'Welcome to the ' + chalk.red('kirigami-wagtail') + ' generator!'
     ));
 
+    this.option('skip-install');
+
     var prompts = [{
       type: 'input',
       name: 'name',
       message: 'Your project name',
-      default: path.basename(process.cwd())
+      default: path.basename(process.cwd()),
+    }, {
+      type: 'input',
+      name: 'description',
+      message: 'Your project\'s description',
+      default: '',
+    }, {
+      type: 'input',
+      name: 'author',
+      message: 'Author',
+      default: 'Kirigami Design Company <http://kirigami.co>',
     }];
 
     return this.prompt(prompts).then(function (props) {
-      // To access props later use this.props.someAnswer;
       this.props = props;
-      this.props.pyname = this.props.name.replace(/-/g, '_');
+      this.props.nameSnake = this.props.name.replace(/-/g, '_');
+
+      this.props.context = {
+        projectName: this.props.name,
+        projectNameSnake: this.props.nameSnake,
+        description: this.props.description,
+        author: this.props.author,
+      };
     }.bind(this));
   },
 
@@ -29,31 +47,56 @@ module.exports = Generator.extend({
     this.fs.copy(
       this.templatePath('**/*'),
       this.destinationPath(),
-      {globOptions: {ignore: '**/*/project_name/*'}}
+      { globOptions: {
+        ignore: '**/*/project_name/*',
+        dot: true,
+      }, }
     );
 
     this.fs.copyTpl(
       this.templatePath('manage.py'),
       this.destinationPath('manage.py'),
-      {projectName: this.props.pyname}
+      this.props.context
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('.env'),
+      this.destinationPath('.env'),
+      this.props.context
     );
 
     this.fs.copyTpl(
       this.templatePath('project_name/**/*'),
-      this.destinationPath(this.props.pyname),
-      {projectName: this.props.pyname}
+      this.destinationPath(this.props.nameSnake),
+      this.props.context
+    );
+  },
+
+  frontend: function () {
+    this.fs.copyTpl(
+      this.templatePath('package.json'),
+      this.destinationPath('package.json'),
+      this.props.context
+    );
+
+    this.fs.copyTpl(
+      this.templatePath('bower.json'),
+      this.destinationPath('bower.json'),
+      this.props.context
     );
   },
 
   install: function () {
-    // this.installDependencies();
+    if (!this.options.skipInstall) {
+      this.installDependencies();
 
-    if (process.env.VIRTUAL_ENV) {
-      this.log(chalk.yellow('Also installing Python dependencies with pip.'));
-      this.spawnCommandSync('pip', ['install', 'pip-tools']);
-      this.spawnCommandSync('pip-sync', ['requirements.txt', 'dev-requirements.txt']);
-    } else {
-      this.log(chalk.yellow('Not in a virtualenv, skipping pip install.'));
+      if (process.env.VIRTUAL_ENV) {
+        this.log(chalk.yellow('Installing Python dependencies.'));
+        this.spawnCommandSync('pip', ['install', 'pip-tools']);
+        this.spawnCommandSync('pip-sync', ['requirements.txt', 'dev-requirements.txt']);
+      } else {
+        this.log(chalk.yellow('Not in a virtualenv, skipping pip install.'));
+      }
     }
-  }
+  },
 });

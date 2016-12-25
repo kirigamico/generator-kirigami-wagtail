@@ -40,6 +40,12 @@
     "extends": "xo-space",
     "env": {
       "mocha": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 6
+    },
+    "rules": {
+      "comma-dangle": 0
     }
   },
   "repository": "mixxorz/generator-kirigami-wagtail",
