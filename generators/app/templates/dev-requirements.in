@@ -1,4 +1,5 @@
 flake8
+honcho
 ipdb
 ipython[notebook]
 pip-tools

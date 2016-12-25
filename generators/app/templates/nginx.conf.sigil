@@ -1,0 +1,46 @@
+server {
+  listen      [::]:{{ .NGINX_PORT }};
+  listen      {{ .NGINX_PORT }};
+  server_name {{ .NOSSL_SERVER_NAME }};
+
+  access_log  /var/log/nginx/{{ .APP }}-access.log;
+  error_log   /var/log/nginx/{{ .APP }}-error.log;
+
+  keepalive_timeout   70;
+  client_max_body_size 20M;
+
+  location /media {
+
+    alias /var/lib/dokku/data/storage/{{ .APP }};
+
+    expires 30d;
+    add_header Pragma public;
+    add_header Cache-Control "public";
+
+    gzip on;
+    gzip_min_length  1100;
+    gzip_buffers  4 32k;
+    gzip_types    text/css text/javascript text/xml text/plain text/x-component application/javascript application/x-javascript application/json application/xml  application/rss+xml font/truetype application/x-font-ttf font/opentype application/vnd.ms-fontobject image/svg+xml;
+    gzip_vary on;
+    gzip_comp_level  6;
+  }
+
+  location    / {
+    include uwsgi_params;
+    uwsgi_pass  {{ .APP }};
+    uwsgi_param Upgrade $http_upgrade;
+    uwsgi_param Connection "upgrade";
+    uwsgi_param Host $http_host;
+    uwsgi_param X-Forwarded-Proto $scheme;
+    uwsgi_param X-Forwarded-For $remote_addr;
+    uwsgi_param X-Forwarded-Port $server_port;
+    uwsgi_param X-Request-Start $msec;
+  }
+  include {{ .DOKKU_ROOT }}/{{ .APP }}/nginx.conf.d/*.conf;
+}
+
+upstream {{ .APP }} {
+{{ range .DOKKU_APP_LISTENERS | split " " }}
+  server {{ . }};
+{{ end }}
+}

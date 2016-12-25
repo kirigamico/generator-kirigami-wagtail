@@ -12,6 +12,7 @@ decorator==4.0.10         # via ipython, traitlets
 entrypoints==0.2.2        # via nbconvert
 first==2.0.1              # via pip-tools
 flake8==3.2.1
+honcho==0.7.1
 html5lib==0.999999999     # via bleach
 ipdb==0.10.1
 ipykernel==4.5.2          # via ipywidgets, notebook
@@ -22,7 +23,7 @@ jinja2==2.8               # via nbconvert, notebook
 jsonschema==2.5.1         # via nbformat
 jupyter-client==4.4.0     # via ipykernel, notebook
 jupyter-core==4.2.1       # via jupyter-client, nbconvert, nbformat, notebook
-MarkupSafe==0.23          # via jinja2
+markupsafe==0.23          # via jinja2
 mccabe==0.5.3             # via flake8
 mistune==0.7.3            # via nbconvert
 nbconvert==5.0.0          # via notebook

@@ -86,6 +86,14 @@ module.exports = Generator.extend({
     );
   },
 
+  deploys: function () {
+    this.fs.copyTpl(
+      this.templatePath('uwsgi.ini'),
+      this.destinationPath('uwsgi.ini'),
+      this.props.context
+    );
+  },
+
   install: function () {
     if (!this.options.skipInstall) {
       this.installDependencies();

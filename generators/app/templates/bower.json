@@ -3,7 +3,7 @@
   "description": "<%= description %>",
   "main": "gulpfile.js",
   "authors": [
-    "<%= author %>"
+    "<%- author %>"
   ],
   "private": true,
   "ignore": [
