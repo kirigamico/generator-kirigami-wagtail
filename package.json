@@ -2,7 +2,7 @@
   "name": "generator-kirigami-wagtail",
   "version": "0.0.0",
   "description": "Yeoman generator for Wagtail",
-  "homepage": "https://github.com/mixxorz/generator-kirigami-wagtail",
+  "homepage": "https://github.com/kirigamico/generator-kirigami-wagtail",
   "author": {
     "name": "Mitchel Cabuloy",
     "email": "mixxorz@gmail.com",
@@ -48,7 +48,7 @@
       "comma-dangle": 0
     }
   },
-  "repository": "mixxorz/generator-kirigami-wagtail",
+  "repository": "kirigamico/generator-kirigami-wagtail",
   "scripts": {
     "prepublish": "gulp prepublish",
     "test": "gulp"

@@ -6,13 +6,27 @@ var helpers = require('yeoman-test');
 describe('generator-kirigami-wagtail:app', function () {
   before(function () {
     return helpers.run(path.join(__dirname, '../generators/app'))
-      .withPrompts({someAnswer: true})
       .toPromise();
   });
 
   it('creates files', function () {
     assert.file([
-      'dummyfile.txt'
+      'Procfile',
+      'Procfile.dev',
+      'README.md',
+      'apps',
+      'bower.json',
+      'dev-requirements.in',
+      'dev-requirements.txt',
+      'gulpfile.js',
+      'manage.py',
+      'nginx.conf.sigil',
+      'package.json',
+      'requirements.in',
+      'requirements.txt',
+      'static',
+      'templates',
+      'uwsgi.ini',
     ]);
   });
 });
