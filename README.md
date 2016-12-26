@@ -1,6 +1,13 @@
 # generator-kirigami-wagtail [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
 > Yeoman generator for Wagtail
 
+## What's in the box
+
+ * Wagtail
+ * Front-end tooling (w/ gulp)
+ * Basic styles
+ * Deploy configuration
+
 ## Installation
 
 First, install [Yeoman](http://yeoman.io) and generator-kirigami-wagtail using [npm](https://www.npmjs.com/) (we assume you have pre-installed [node.js](https://nodejs.org/)).
@@ -10,10 +17,33 @@ npm install -g yo
 npm install -g generator-kirigami-wagtail
 ```
 
+Create your project folder
+
+```bash
+mkdir wagtail-is-osm
+mv wagtail-is-osm
+```
+
+Activate your virtualenv
+
+```bash
+virtualenv venv
+source venv/bin/activate
+```
+
 Then generate your new project:
 
 ```bash
 yo kirigami-wagtail
+```
+
+## Usage
+
+Honcho gets installed locally, you can use it to run both Gulp and the Django
+dev server at the same time.
+
+```bash
+honcho -f Procfile.dev start
 ```
 
 ## Getting To Know Yeoman

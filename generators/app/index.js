@@ -94,6 +94,14 @@ module.exports = Generator.extend({
     );
   },
 
+  docs: function () {
+    this.fs.copyTpl(
+      this.templatePath('README.md'),
+      this.destinationPath('README.md'),
+      this.props.context
+    );
+  },
+
   install: function () {
     if (!this.options.skipInstall) {
       this.installDependencies();
