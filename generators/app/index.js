@@ -47,10 +47,10 @@ module.exports = Generator.extend({
     this.fs.copy(
       this.templatePath('**/*'),
       this.destinationPath(),
-      { globOptions: {
+      {globOptions: {
         ignore: '**/*/project_name/*',
         dot: true,
-      }, }
+      }}
     );
 
     this.fs.copyTpl(

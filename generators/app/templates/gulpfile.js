@@ -24,19 +24,19 @@ gulp.task('bs-reload', function () {
 });
 
 gulp.task('copy', function () {
-  return gulp.src(['static/img/**/*', 'static/favicon/**/*'], { base: './static' })
+  return gulp.src(['static/img/**/*', 'static/favicon/**/*'], {base: './static'})
     .pipe(gulp.dest('_build'));
 });
 
 gulp.task('images', function () {
   return gulp.src('static/images/**/*.{jpg,png}')
-    .pipe(gulpif(argv.prod, imagemin({ optimizationLevel: 3, progressive: true, interlaced: true })))
+    .pipe(gulpif(argv.prod, imagemin({optimizationLevel: 3, progressive: true, interlaced: true})))
     .pipe(gulp.dest('_build/images/'));
 });
 
 gulp.task('svg', function () {
   return gulp.src('static/svg/**/*.svg')
-    .pipe(imagemin({ optimizationLevel: 3, progressive: true, interlaced: true }))
+    .pipe(imagemin({optimizationLevel: 3, progressive: true, interlaced: true}))
     .pipe(gulp.dest('_build/svg/'));
 });
 
@@ -46,7 +46,7 @@ gulp.task('styles', function () {
       errorHandler: function (error) {
         console.log(error.message);
         this.emit('end');
-      }, }))
+      }}))
       .pipe(sassGlob())
       .pipe(sass({
         includePaths: ['bower_components'],
@@ -54,25 +54,25 @@ gulp.task('styles', function () {
       .pipe(autoprefixer('last 2 versions'))
       .pipe(gulpif(argv.prod, csso()))
       .pipe(gulp.dest('_build/styles/'))
-      .pipe(gulpif(!argv.prod, browserSync.reload({ stream:true })));
+      .pipe(gulpif(!argv.prod, browserSync.reload({stream: true})));
 });
 
 gulp.task('scripts', function () {
   return gulp.src([
-      'static/scripts/lib/**/*.js',
-      'static/scripts/pages/**/*.js',
-      'static/scripts/main.js'
-    ])
-    .pipe(plumber({
-      errorHandler: function (error) {
-        console.log(error.message);
-        this.emit('end');
-      }, }))
-      .pipe(concat('main.js'))
-      .pipe(babel())
-      .pipe(gulpif(argv.prod, uglify()))
-      .pipe(gulp.dest('_build/scripts/'))
-      .pipe(gulpif(!argv.prod, browserSync.reload({ stream:true })));
+    'static/scripts/lib/**/*.js',
+    'static/scripts/pages/**/*.js',
+    'static/scripts/main.js'
+  ])
+  .pipe(plumber({
+    errorHandler: function (error) {
+      console.log(error.message);
+      this.emit('end');
+    }}))
+    .pipe(concat('main.js'))
+    .pipe(babel())
+    .pipe(gulpif(argv.prod, uglify()))
+    .pipe(gulp.dest('_build/scripts/'))
+    .pipe(gulpif(!argv.prod, browserSync.reload({stream: true})));
 });
 
 gulp.task('bower', function () {
@@ -80,7 +80,7 @@ gulp.task('bower', function () {
     .pipe(concat('vendor.js'))
     .pipe(gulpif(argv.prod, uglify()))
     .pipe(gulp.dest('_build/scripts/'))
-    .pipe(gulpif(!argv.prod, browserSync.reload({ stream:true })));
+    .pipe(gulpif(!argv.prod, browserSync.reload({stream: true})));
 });
 
 gulp.task('build', ['styles', 'bower', 'scripts', 'images', 'svg', 'copy']);
