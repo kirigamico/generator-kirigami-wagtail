@@ -60,7 +60,7 @@ MIT © [Mitchel Cabuloy](https://mitchel.me)
 
 [npm-image]: https://badge.fury.io/js/generator-kirigami-wagtail.svg
 [npm-url]: https://npmjs.org/package/generator-kirigami-wagtail
-[travis-image]: https://travis-ci.org/mixxorz/generator-kirigami-wagtail.svg?branch=master
-[travis-url]: https://travis-ci.org/mixxorz/generator-kirigami-wagtail
+[travis-image]: https://travis-ci.org/kirigamico/generator-kirigami-wagtail.svg?branch=master
+[travis-url]: https://travis-ci.org/kirigamico/generator-kirigami-wagtail
 [daviddm-image]: https://david-dm.org/kirigamico/generator-kirigami-wagtail.svg?theme=shields.io
 [daviddm-url]: https://david-dm.org/kirigamico/generator-kirigami-wagtail
