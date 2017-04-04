@@ -11,6 +11,10 @@ describe('generator-kirigami-wagtail:app', function () {
 
   it('creates files', function () {
     assert.file([
+      '.editorconfig',
+      '.env',
+      '.gitignore',
+      '.sass-lint.yml',
       'Procfile',
       'Procfile.dev',
       'README.md',

@@ -47,21 +47,29 @@ module.exports = Generator.extend({
     this.fs.copy(
       this.templatePath('**/*'),
       this.destinationPath(),
-      {globOptions: {
-        ignore: '**/*/project_name/*',
-        dot: true,
-      }}
+      {globOptions: {ignore: ['**/*/project_name/*', '**/_*']}}
+    );
+
+    this.fs.copy(
+      this.templatePath('_editorconfig'),
+      this.destinationPath('.editorconfig')
+    );
+    this.fs.copy(
+      this.templatePath('_env'),
+      this.destinationPath('.env')
+    );
+    this.fs.copy(
+      this.templatePath('_gitignore'),
+      this.destinationPath('.gitignore')
+    );
+    this.fs.copy(
+      this.templatePath('_sass-lint.yml'),
+      this.destinationPath('.sass-lint.yml')
     );
 
     this.fs.copyTpl(
       this.templatePath('manage.py'),
       this.destinationPath('manage.py'),
-      this.props.context
-    );
-
-    this.fs.copyTpl(
-      this.templatePath('.env'),
-      this.destinationPath('.env'),
       this.props.context
     );
 
