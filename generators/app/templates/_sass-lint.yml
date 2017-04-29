@@ -21,3 +21,11 @@ rules:
       style: double
   single-line-per-selector:
     - 0
+
+  placeholder-in-extend:
+    - 0
+
+  nesting-depth:
+    - 1
+    -
+      max-depth: 3

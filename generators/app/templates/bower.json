@@ -15,10 +15,10 @@
   ],
   "dependencies": {
     "breakpoint-slicer": "^2.0.0",
-    "normalize-scss": "^3.0.3",
+    "jquery": "^3.2.1",
     "modular-scale": "^2.1.3",
-    "typi": "^2.3.0",
-    "jquery": "^3.1.1",
-    "picturefill": "^3.0.2"
+    "normalize-scss": "^3.0.3",
+    "picturefill": "^3.0.3",
+    "typi": "^3.1.0"
   }
 }

@@ -3,4 +3,5 @@ wagtail
 
 django-environ
 psycopg2
+uwsgi
 whitenoise

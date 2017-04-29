@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+echo "-----> Building frontend assets"
+gulp build --prod
+
+echo "-----> Collecting staticfiles"
+python manage.py collectstatic --noinput

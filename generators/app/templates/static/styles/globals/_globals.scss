@@ -1,0 +1,42 @@
+// sass-lint:disable no-vendor-prefixes
+
+@include typi-init;
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+  margin-bottom: vr(1);
+  padding: 0;
+}
+
+h1 {
+  @include typi("h1");
+}
+
+h2 {
+  @include typi("h2");
+}
+
+h3 {
+  @include typi("h3");
+}
+
+h4 {
+  @include typi("h4");
+}
+
+p {
+  @include typi("p");
+}
+
+small {
+  @include typi("small");
+}

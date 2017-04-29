@@ -46,12 +46,18 @@ dev server at the same time.
 honcho -f Procfile.dev start
 ```
 
-## Getting To Know Yeoman
+## Deploy
 
- * Yeoman has a heart of gold.
- * Yeoman is a person with feelings and opinions, but is very easy to work with.
- * Yeoman can be too opinionated at times but is easily convinced not to be.
- * Feel free to [learn more about Yeoman](http://yeoman.io/).
+This generator includes configuration for deployment using buildpacks, so you
+can deploy it to Heroku or Dokku right out of the box.
+
+Before you do though, make sure these environment variables are set on your
+Heroku/Dokku app.
+
+* SECRET_KEY
+* ALLOWED_HOSTS
+* DATABASE_URL
+* DISABLE_COLLECTSTATIC
 
 ## License
 

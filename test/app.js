@@ -11,14 +11,17 @@ describe('generator-kirigami-wagtail:app', function () {
 
   it('creates files', function () {
     assert.file([
+      '.buildpacks',
       '.editorconfig',
-      '.env',
+      '.env.sample',
+      '.flake8',
       '.gitignore',
       '.sass-lint.yml',
       'Procfile',
       'Procfile.dev',
       'README.md',
       'apps',
+      'bin/post_compile',
       'bower.json',
       'dev-requirements.in',
       'dev-requirements.txt',
@@ -26,6 +29,7 @@ describe('generator-kirigami-wagtail:app', function () {
       'manage.py',
       'nginx.conf.sigil',
       'package.json',
+      'runtime.txt',
       'requirements.in',
       'requirements.txt',
       'static',

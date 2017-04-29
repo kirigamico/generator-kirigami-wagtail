@@ -4,23 +4,28 @@
 #
 #    pip-compile --output-file requirements.txt requirements.in
 #
-beautifulsoup4==4.5.1     # via wagtail
-django-environ==0.4.1
-django-modelcluster==2.0  # via wagtail
-django-taggit==0.18.3     # via wagtail
+appdirs==1.4.3            # via setuptools
+beautifulsoup4==4.5.3     # via wagtail
+django-environ==0.4.3
+django-modelcluster==3.1  # via wagtail
+django-taggit==0.22.1     # via wagtail
 django-treebeard==4.1.0   # via wagtail
-django==1.10.4
-djangorestframework==3.5.3  # via wagtail
+django==1.10.7
+djangorestframework==3.6.2  # via wagtail
 html5lib==0.999999999     # via wagtail
-pillow==3.4.2             # via wagtail
-psycopg2==2.6.2
-pytz==2016.10             # via django-modelcluster
-requests==2.12.4          # via wagtail
-six==1.10.0               # via django-environ, html5lib
-unidecode==0.4.19         # via wagtail
-wagtail==1.8
-webencodings==0.5         # via html5lib
-whitenoise==3.2.2
+olefile==0.44             # via pillow
+packaging==16.8           # via setuptools
+pillow==4.1.1             # via wagtail
+psycopg2==2.7.1
+pyparsing==2.2.0          # via packaging
+pytz==2017.2              # via django-modelcluster
+requests==2.13.0          # via wagtail
+six==1.10.0               # via django-environ, html5lib, packaging, setuptools
+unidecode==0.4.20         # via wagtail
+uwsgi==2.0.15
+wagtail==1.9.1
+webencodings==0.5.1       # via html5lib
+whitenoise==3.3.0
 willow==0.4               # via wagtail
 
 # The following packages are considered to be unsafe in a requirements file:

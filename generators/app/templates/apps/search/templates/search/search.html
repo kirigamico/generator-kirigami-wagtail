@@ -1,38 +1,41 @@
-{% templatetag openblock %} extends "base.html" {% templatetag closeblock %}
-{% templatetag openblock %} load static wagtailcore_tags {% templatetag closeblock %}
+{% extends "base.html" %}
+{% load staticfiles wagtailcore_tags %}
 
-{% templatetag openblock %} block body_class {% templatetag closeblock %}template-searchresults{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% block body_class %}template-searchresults{% endblock body_class %}
 
-{% templatetag openblock %} block title {% templatetag closeblock %}Search{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% block title %}Search{% endblock title %}
 
-{% templatetag openblock %} block content {% templatetag closeblock %}
-    <h1>Search</h1>
 
-    <form action="{% templatetag openblock %} url 'search' {% templatetag closeblock %}" method="get">
-        <input type="text" name="query"{% templatetag openblock %} if search_query {% templatetag closeblock %} value="{% templatetag openvariable %} search_query {% templatetag closevariable %}"{% templatetag openblock %} endif {% templatetag closeblock %}>
-        <input type="submit" value="Search" class="button">
-    </form>
+{% block content %}
+<h1>Search</h1>
 
-    {% templatetag openblock %} if search_results {% templatetag closeblock %}
-        <ul>
-            {% templatetag openblock %} for result in search_results {% templatetag closeblock %}
-                <li>
-                    <h4><a href="{% templatetag openblock %} pageurl result {% templatetag closeblock %}">{% templatetag openvariable %} result {% templatetag closevariable %}</a></h4>
-                    {% templatetag openblock %} if result.search_description {% templatetag closeblock %}
-                        {% templatetag openvariable %} result.search_description|safe {% templatetag closevariable %}
-                    {% templatetag openblock %} endif {% templatetag closeblock %}
-                </li>
-            {% templatetag openblock %} endfor {% templatetag closeblock %}
-        </ul>
+<form action="{% url "search" %}" method="get">
+  <input type="text" name="query"{% if search_query %} value="{{ search_query }}"{% endif %}>
+  <input type="submit" value="Search" class="button">
+</form>
 
-        {% templatetag openblock %} if search_results.has_previous {% templatetag closeblock %}
-            <a href="{% templatetag openblock %} url 'search' {% templatetag closeblock %}?query={% templatetag openvariable %} search_query|urlencode {% templatetag closevariable %}&amp;page={% templatetag openvariable %} search_results.previous_page_number {% templatetag closevariable %}">Previous</a>
-        {% templatetag openblock %} endif {% templatetag closeblock %}
+{% if search_results %}
+<ul>
+  {% for result in search_results %}
+  <li>
+    <h4><a href="{% pageurl result %}">{{ result }}</a></h4>
+    {% if result.searc_desription %}
+    {{ result.search_description|safe }}
+    {% endif %}
+  </li>
+  {% endfor %}
+</ul>
 
-        {% templatetag openblock %} if search_results.has_next {% templatetag closeblock %}
-            <a href="{% templatetag openblock %} url 'search' {% templatetag closeblock %}?query={% templatetag openvariable %} search_query|urlencode {% templatetag closevariable %}&amp;page={% templatetag openvariable %} search_results.next_page_number {% templatetag closevariable %}">Next</a>
-        {% templatetag openblock %} endif {% templatetag closeblock %}
-    {% templatetag openblock %} elif search_query {% templatetag closeblock %}
-        No results found
-    {% templatetag openblock %} endif {% templatetag closeblock %}
-{% templatetag openblock %} endblock {% templatetag closeblock %}
+{% if search_results.has_previous %}
+<a href="{% url "search" %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_page_number }}">Previous</a>
+{% endif %}
+
+{% if search_results.has_next %}
+<a href="{% url "search" %}?query={{ search_query|urlencode }}&amp;page={{ search_results.previous_next_number }}">Next</a>
+{% endif %}
+
+{% elif search_query %}
+No results found
+{% endif %}
+
+{% endblock content %}

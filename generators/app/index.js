@@ -43,30 +43,42 @@ module.exports = Generator.extend({
     }.bind(this));
   },
 
-  python: function () {
+  project: function () {
+    const dotfiles = [
+      '_buildpacks',
+      '_editorconfig',
+      '_env.sample',
+      '_flake8',
+      '_gitignore',
+      '_sass-lint.yml',
+    ];
+
+    const ignoredDotfiles = dotfiles.map(path => this.templatePath(path));
+
+    // Copy all files except some
     this.fs.copy(
       this.templatePath('**/*'),
       this.destinationPath(),
-      {globOptions: {ignore: ['**/*/project_name/*', '**/_*']}}
+      {globOptions: {ignore: ['**/*/project_name/*', ...ignoredDotfiles]}}
     );
 
-    this.fs.copy(
-      this.templatePath('_editorconfig'),
-      this.destinationPath('.editorconfig')
-    );
-    this.fs.copy(
-      this.templatePath('_env'),
-      this.destinationPath('.env')
-    );
-    this.fs.copy(
-      this.templatePath('_gitignore'),
-      this.destinationPath('.gitignore')
-    );
-    this.fs.copy(
-      this.templatePath('_sass-lint.yml'),
-      this.destinationPath('.sass-lint.yml')
-    );
+    // Copy dotfiles
+    for (let dotfile of dotfiles) {
+      this.fs.copy(
+        this.templatePath(dotfile),
+        this.destinationPath(dotfile.replace('_', '.'))
+      );
+    }
 
+    this.fs.copyTpl(
+      this.templatePath('_env.sample'),
+      this.destinationPath('.env.sample'),
+      this.props.context
+    );
+  },
+
+  python: function () {
+    // Copy templates
     this.fs.copyTpl(
       this.templatePath('manage.py'),
       this.destinationPath('manage.py'),
