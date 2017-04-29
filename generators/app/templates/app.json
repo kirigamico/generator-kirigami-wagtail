@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "postdeploy": "bin/post_deploy",
+    "dokku": {
+      "postdeploy": "bin/post_deploy"
+    }
+  }
+}

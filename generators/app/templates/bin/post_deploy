@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+echo "-----> Migrating database"
+python manage.py migrate
