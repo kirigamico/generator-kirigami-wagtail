@@ -98,12 +98,6 @@ module.exports = Generator.extend({
       this.destinationPath('package.json'),
       this.props.context
     );
-
-    this.fs.copyTpl(
-      this.templatePath('bower.json'),
-      this.destinationPath('bower.json'),
-      this.props.context
-    );
   },
 
   deploys: function () {
@@ -124,7 +118,7 @@ module.exports = Generator.extend({
 
   install: function () {
     if (!this.options.skipInstall) {
-      this.installDependencies();
+      this.npmInstall();
 
       if (process.env.VIRTUAL_ENV) {
         this.log(chalk.yellow('Installing Python dependencies.'));

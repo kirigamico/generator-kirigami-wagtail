@@ -1,5 +1,6 @@
 // sass-lint:disable no-vendor-prefixes
 
+@include normalize;
 @include typi-init;
 
 * {

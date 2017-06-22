@@ -22,7 +22,6 @@ describe('generator-kirigami-wagtail:app', function () {
       'README.md',
       'apps',
       'bin/post_compile',
-      'bower.json',
       'dev-requirements.in',
       'dev-requirements.txt',
       'gulpfile.js',
