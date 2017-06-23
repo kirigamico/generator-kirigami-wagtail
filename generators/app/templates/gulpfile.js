@@ -98,7 +98,7 @@ gulp.task('scripts', bundle);
 gulp.task('build', ['styles', 'scripts', 'images', 'svg', 'copy']);
 
 gulp.task('default', ['browser-sync'], function () {
-  bundler.plugin(watcherify);
+  bundler.plugin(watchify);
   bundler.on('update', bundle);
   gulp.watch('static/styles/**/*.scss', ['styles']);
   gulp.watch('static/scripts/**/*.js', ['scripts']);
