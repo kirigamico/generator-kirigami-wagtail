@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.3 (2017-06-30)
+
+* Remove the need for bower (npm all the way!)
+* Add browserify config
+* Add package-lock.json
+* Change es6 style to no semicolons
+* Add `npm run lint` script
+* Add CircleCI config
+
 ## 0.1.2 (2017-04-29)
 
 * Fix... everything
