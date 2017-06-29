@@ -2,6 +2,7 @@ django
 wagtail
 
 django-environ
+django-inline-svg
 psycopg2
 uwsgi
 whitenoise

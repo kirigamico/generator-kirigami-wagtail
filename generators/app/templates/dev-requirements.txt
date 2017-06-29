@@ -4,12 +4,11 @@
 #
 #    pip-compile --output-file dev-requirements.txt dev-requirements.in
 #
-appdirs==1.4.3            # via setuptools
 appnope==0.1.0            # via ipython
 bleach==2.0.0             # via nbconvert
 click==6.7                # via pip-tools
 decorator==4.0.11         # via ipython, traitlets
-entrypoints==0.2.2        # via nbconvert
+entrypoints==0.2.3        # via nbconvert
 first==2.0.1              # via pip-tools
 flake8==3.3.0
 honcho==1.0.1
@@ -17,41 +16,36 @@ html5lib==0.999999999     # via bleach
 ipdb==0.10.3
 ipykernel==4.6.1          # via ipywidgets, notebook
 ipython-genutils==0.2.0   # via nbformat, notebook, traitlets
-ipython[notebook]==6.0.0
+ipython[notebook]==6.1.0
 ipywidgets==6.0.0         # via ipython
 jedi==0.10.2              # via ipython
 jinja2==2.9.6             # via nbconvert, notebook
 jsonschema==2.6.0         # via nbformat
-jupyter-client==5.0.1     # via ipykernel, notebook
+jupyter-client==5.1.0     # via ipykernel, notebook
 jupyter-core==4.3.0       # via jupyter-client, nbconvert, nbformat, notebook
 markupsafe==1.0           # via jinja2
 mccabe==0.6.1             # via flake8
 mistune==0.7.4            # via nbconvert
-nbconvert==5.1.1          # via notebook
+nbconvert==5.2.1          # via notebook
 nbformat==4.3.0           # via ipywidgets, nbconvert, notebook
 notebook==5.0.0           # via ipython, widgetsnbextension
-packaging==16.8           # via setuptools
 pandocfilters==1.4.1      # via nbconvert
 pexpect==4.2.1            # via ipython
 pickleshare==0.7.4        # via ipython
 pip-tools==1.9.0
 prompt-toolkit==1.0.14    # via ipython
-ptyprocess==0.5.1         # via pexpect, terminado
+ptyprocess==0.5.2         # via pexpect, terminado
 pycodestyle==2.3.1        # via flake8
 pyflakes==1.5.0           # via flake8
 pygments==2.2.0           # via ipython, nbconvert
-pyparsing==2.2.0          # via packaging
 python-dateutil==2.6.0    # via jupyter-client
 pyzmq==16.0.2             # via jupyter-client
 simplegeneric==0.8.1      # via ipython
-six==1.10.0               # via bleach, html5lib, packaging, pip-tools, prompt-toolkit, python-dateutil, setuptools, traitlets
+six==1.10.0               # via bleach, html5lib, pip-tools, prompt-toolkit, python-dateutil, traitlets
 terminado==0.6            # via notebook
-testpath==0.3             # via nbconvert
+testpath==0.3.1           # via nbconvert
 tornado==4.5.1            # via ipykernel, notebook, terminado
 traitlets==4.3.2          # via ipykernel, ipython, ipywidgets, jupyter-client, jupyter-core, nbconvert, nbformat, notebook
 wcwidth==0.1.7            # via prompt-toolkit
 webencodings==0.5.1       # via html5lib
 widgetsnbextension==2.0.0  # via ipywidgets
-
-# The following packages are considered to be unsafe in a requirements file:
-# setuptools                # via html5lib, ipdb, ipython
