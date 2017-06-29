@@ -27,6 +27,7 @@ describe('generator-kirigami-wagtail:app', function () {
       'gulpfile.js',
       'manage.py',
       'nginx.conf.sigil',
+      'package-lock.json',
       'package.json',
       'runtime.txt',
       'requirements.in',
