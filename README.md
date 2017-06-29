@@ -1,12 +1,30 @@
 # generator-kirigami-wagtail [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
-> Yeoman generator for Wagtail
+> An opinionated Yeoman generator for Wagtail
 
 ## What's in the box
 
- * Wagtail
- * Front-end tooling (w/ gulp)
- * Basic styles
- * Deploy configuration
+* Python 3.6
+* Django + Wagtail
+   * Sane default configuration
+   * [pip-tools](https://github.com/jazzband/pip-tools) for Python dependencies
+   * [django-environ](https://github.com/joke2k/django-environ) for cleaner `settings.py` file
+* Front-end tooling
+  * [Gulp](http://gulpjs.com/) for task management
+  * [Sass](http://sass-lang.com/) for easier CSS
+  * [Browserify](http://browserify.org/) w/ [babel](https://babeljs.io/) for ES6 bundling
+  * [imagemin](https://github.com/imagemin/imagemin) to compress images, svgs
+  * `npm run lint` to lint files with flake8, eslint, and sass-lint
+* Basic styles
+  * [Breakerpoint Slicer](https://github.com/lolmaus/breakpoint-slicer) for breakpoints
+  * [Modular Scale](https://github.com/modularscale/modularscale-sass) for… modular scale
+  * [Susy](http://susy.oddbird.net/) for grids
+  * [Typi](https://github.com/zellwk/typi) for typography
+  * [normalize-scss](https://github.com/JohnAlbin/normalize-scss) for CSS resets
+* Deploy configuration
+  * Heroku/Dokku ready
+  * [uwsgi](https://uwsgi-docs.readthedocs.io/) for Python server
+  * [Whitenoise](http://whitenoise.evans.io/) for serving static files
+  * CircleCI config
 
 ## Installation
 
@@ -57,7 +75,7 @@ Heroku/Dokku app.
 * SECRET_KEY
 * ALLOWED_HOSTS
 * DATABASE_URL
-* DISABLE_COLLECTSTATIC
+* DISABLE_COLLECTSTATIC=1
 
 ## License
 
