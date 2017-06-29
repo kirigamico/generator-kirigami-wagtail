@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.4 (2017-06-30)
+
+* Fix package-lock.json
+
 ## 0.1.3 (2017-06-30)
 
 * Remove the need for bower (npm all the way!)
