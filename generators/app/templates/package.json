@@ -4,7 +4,10 @@
   "description": "<%= description %>",
   "main": "gulpfile.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint:python": "flake8",
+    "lint:styles": "sass-lint",
+    "lint:scripts": "eslint static/scripts",
+    "lint": "npm run lint:python && npm run lint:styles && npm run lint:scripts"
   },
   "author": "<%- author %>",
   "private": true,
