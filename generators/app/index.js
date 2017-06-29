@@ -98,12 +98,6 @@ module.exports = Generator.extend({
       this.destinationPath('package.json'),
       this.props.context
     );
-
-    this.fs.copyTpl(
-      this.templatePath('package-lock.json'),
-      this.destinationPath('package-lock.json'),
-      this.props.context
-    );
   },
 
   deploys: function () {
