@@ -1,5 +1,9 @@
 # Changelog
 
+## 0.1.5 (2017-06-30)
+
+* Remove package-lock.json from template
+
 ## 0.1.4 (2017-06-30)
 
 * Fix package-lock.json
