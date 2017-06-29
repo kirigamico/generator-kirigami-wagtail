@@ -1,4 +1,7 @@
+<img src="yeobird.png">
+
 # generator-kirigami-wagtail [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url]
+
 > An opinionated Yeoman generator for Wagtail
 
 ## What's in the box
