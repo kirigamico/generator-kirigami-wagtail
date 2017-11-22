@@ -120,13 +120,9 @@ module.exports = Generator.extend({
     if (!this.options.skipInstall) {
       this.npmInstall();
 
-      if (process.env.VIRTUAL_ENV) {
-        this.log(chalk.yellow('Installing Python dependencies.'));
-        this.spawnCommandSync('pip', ['install', 'pip-tools']);
-        this.spawnCommandSync('pip-sync', ['requirements.txt', 'dev-requirements.txt']);
-      } else {
-        this.log(chalk.yellow('Not in a virtualenv, skipping pip install.'));
-      }
+      this.log(chalk.yellow('Installing Python dependencies with pipenv.'));
+      this.spawnCommandSync('pip', ['install', 'pipenv']);
+      this.spawnCommandSync('pipenv', ['install', '--dev']);
     }
   },
 });
