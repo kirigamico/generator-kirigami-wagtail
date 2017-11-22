@@ -37,6 +37,15 @@
     {% block extra_css %}
     {# Override this in templates to add extra stylesheets #}
     {% endblock %}
+
+    {# Global site tag (gtag.js) - Google Analytics #}
+    {# <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXX-X"></script> #}
+    {# <script> #}
+    {#   window.dataLayer = window.dataLayer || []; #}
+    {#   function gtag(){dataLayer.push(arguments);} #}
+    {#   gtag('js', new Date()); #}
+    {#   gtag('config', 'UA-XXXXXXXX-X'); #}
+    {# </script> #}
   </head>
 
   <body class="{% block body_class %}{% endblock %}">
