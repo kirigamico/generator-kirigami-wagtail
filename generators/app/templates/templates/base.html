@@ -16,7 +16,7 @@
     <meta name="description" content="{{ page.search_description }}">
 
     {# Open Graph #}
-    <meta property="og:site_name" content="Parcel of Property">
+    <meta property="og:site_name" content="{{ page.get_site.site_name }}">
     <meta property="og:title" content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}">
     <meta property="og:type" content="website">
     <meta property="og:url" content="{{ page.full_url }}">
@@ -24,11 +24,14 @@
     <meta property="og:image" content="">
 
     {# Twitter Card #}
-    <meta name=”twitter:card” content="summary">
+    <meta name=”twitter:card” content="summary_large_image">
+    <meta name=”twitter:site” content="">
+    <meta name=”twitter:creator” content="">
     <meta name=”twitter:title” content="{% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}">
     <meta name=”twitter:url” content="{{ page.full_url }}">
     <meta name=”twitter:description” content="{{ page.search_description }}">
     <meta name="twitter:image" content="">
+    <meta name=”twitter:domain” content="">
     {% endblock seo %}
 
     {# Global stylesheets #}
