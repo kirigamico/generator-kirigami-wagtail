@@ -1,5 +1,15 @@
 # Changelog
 
+## DEV
+
+* Add Google Analytics
+* Add babel-polyfill to package.json
+* Add default Susy variables
+* Migrate to Pipenv
+* Update meta tags
+* Update nginx template
+* Update python runtime to python-3.6.3
+
 ## 0.1.5 (2017-06-30)
 
 * Remove package-lock.json from template
