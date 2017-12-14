@@ -4,8 +4,8 @@ const chalk = require('chalk');
 const path = require('path');
 const yosay = require('yosay');
 
-module.exports = Generator.extend({
-  prompting: function () {
+module.exports = class extends Generator {
+  prompting() {
     // Have Yeoman greet the user.
     this.log(yosay(
       'Welcome to the ' + chalk.red('kirigami-wagtail') + ' generator!'
@@ -41,9 +41,9 @@ module.exports = Generator.extend({
         author: this.props.author,
       };
     }.bind(this));
-  },
+  }
 
-  project: function () {
+  project() {
     const dotfiles = [
       '_buildpacks',
       '_editorconfig',
@@ -75,9 +75,9 @@ module.exports = Generator.extend({
       this.destinationPath('.env.sample'),
       this.props.context
     );
-  },
+  }
 
-  python: function () {
+  python() {
     // Copy templates
     this.fs.copyTpl(
       this.templatePath('manage.py'),
@@ -90,33 +90,33 @@ module.exports = Generator.extend({
       this.destinationPath(this.props.nameSnake),
       this.props.context
     );
-  },
+  }
 
-  frontend: function () {
+  frontend() {
     this.fs.copyTpl(
       this.templatePath('package.json'),
       this.destinationPath('package.json'),
       this.props.context
     );
-  },
+  }
 
-  deploys: function () {
+  deploys() {
     this.fs.copyTpl(
       this.templatePath('uwsgi.ini'),
       this.destinationPath('uwsgi.ini'),
       this.props.context
     );
-  },
+  }
 
-  docs: function () {
+  docs() {
     this.fs.copyTpl(
       this.templatePath('README.md'),
       this.destinationPath('README.md'),
       this.props.context
     );
-  },
+  }
 
-  install: function () {
+  install() {
     if (!this.options.skipInstall) {
       this.npmInstall();
 
@@ -124,5 +124,5 @@ module.exports = Generator.extend({
       this.spawnCommandSync('pip', ['install', 'pipenv']);
       this.spawnCommandSync('pipenv', ['install', '--dev']);
     }
-  },
-});
+  }
+};
