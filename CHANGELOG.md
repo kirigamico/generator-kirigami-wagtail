@@ -1,14 +1,16 @@
 # Changelog
 
-## DEV
+## 0.2.0 (2017-12-14)
 
 * Add Google Analytics
 * Add babel-polyfill to package.json
 * Add default Susy variables
+* Clean up gulpfile
 * Migrate to Pipenv
 * Update meta tags
 * Update nginx template
 * Update python runtime to python-3.6.3
+* Update Yeoman to v2
 
 ## 0.1.5 (2017-06-30)
 

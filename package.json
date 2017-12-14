@@ -1,6 +1,6 @@
 {
   "name": "generator-kirigami-wagtail",
-  "version": "0.1.5",
+  "version": "0.2.0",
   "description": "An opinionated Yeoman generator for Wagtail",
   "homepage": "https://github.com/kirigamico/generator-kirigami-wagtail",
   "author": {
