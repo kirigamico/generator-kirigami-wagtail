@@ -9,7 +9,7 @@
 * Python 3.6
 * Django + Wagtail
    * Sane default configuration
-   * [pip-tools](https://github.com/jazzband/pip-tools) for Python dependencies
+   * [Pipenv](https://pipenv.readthedocs.io/en/latest/) for Python dependencies
    * [django-environ](https://github.com/joke2k/django-environ) for cleaner `settings.py` file
 * Front-end tooling
   * [Gulp](http://gulpjs.com/) for task management
