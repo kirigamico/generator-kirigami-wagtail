@@ -4,54 +4,76 @@
 
 ## Requirements
 
-* Python 3.6
-* Pipenv
+* Docker
 
-## Setup
+## Developing
 
-Install Python dependencies with pipenv. It'll automatically create a virtualenv for you, unless you already made one and have it activated.
+Use docker-compose.
 
 ```
-$ pipenv install --dev
+$ docker-compose up
 ```
 
-Install front-end dependencies with npm
+This will create the containers necessary for development. Namely, the postgres
+database, django runserver, and gulp + browser-sync.
+
+### Management commands
+
+Occasionally, you might need to run django management commands. e.g. to migrate
+the database or create a superuser. Run this using docker-compose.
+
+```
+$ docker-compose run django python manage.py migrate
+```
+
+### Gulp
+
+Gulp handles static asset compilation and runs in its own container. To run gulp
+tasks manually, use docker-compose:
+
+```
+$ docker-compose run gulp gulp <command>
+```
+
+Here's a list of available gulp tasks:
+
+```
+$ gulp               # runs watchers
+$ gulp scripts       # compile javascript
+$ gulp styles        # compile sass
+$ gulp images        # copy images
+$ gulp svg           # minify svgs
+$ gulp build         # does all of the above
+$ gulp build --prod  # build but also minify everything
+```
+
+### Linting
+
+Typically, linting needs to work on the host machine because the code editor is
+on the host machine. flake8, sass-lint, and eslint are configured to lint code
+for this repository. flake8 and sass-lint can be installed globally.
+
+```
+$ npm install -g sass-lint
+$ pip install flake8  # outside a virtualenv
+```
+
+eslint needs to be installed locally however. Unfortunately, it only works if
+you install everything.
 
 ```
 $ npm install
 ```
 
-Copy the `.env.sample` file to `.env` and replace its values as needed. You should create a postgres database for the project.
+You can then run the linters using npm scripts:
 
 ```
-$ cp .env.sample .env
+$ npm run lint:python   # lint using flake8
+$ npm run lint:styles   # lint using sass-lint
+$ npm run lint:scripts  # lint using eslint
+$ npm run lint          # run all linters
 ```
 
-## Developing
-
-Run the Django dev server
-
-```
-$ python manage.py runserver
-```
-
-Gulp is configured to compile JavaScript and Sass, minify images, and copy some files.
-
-```
-$ gulp // runs watchers
-$ gulp scripts // compile javascript
-$ gulp styles // compile sass
-$ gulp images // copy images
-$ gulp svg // minify svgs
-$ gulp build // does all of the above
-$ gulp build --prod // build but also minify everything
-```
-
-Run both at the same time using honcho
-
-```
-$ honcho start -f Procfile.dev
-```
 
 ## Deploying
 
