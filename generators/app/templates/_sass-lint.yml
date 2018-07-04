@@ -1,7 +1,9 @@
 files:
   include: 'static/styles/**/*.scss'
   ignore: 'static/styles/vendor/**/*.scss'
-
+options:
+  formatter: stylish
+  merge-default-rules: true
 rules:
   class-name-format:
     - 2
@@ -29,3 +31,7 @@ rules:
     - 1
     -
       max-depth: 3
+  mixins-before-declarations:
+    - 2
+    -
+      exclude: ['from', 'to', 'between', 'breakpoint']
