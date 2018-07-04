@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "lint:python": "flake8",
-    "lint:styles": "sass-lint",
+    "lint:styles": "sass-lint -vq",
     "lint:scripts": "eslint static/scripts",
     "lint": "npm run lint:python && npm run lint:styles && npm run lint:scripts"
   },
