@@ -1,0 +1,11 @@
+User-agent: *
+
+# Ethics
+# http://www.wired.com/epicenter/2010/08/robot-laws/
+Disallow: /harming/humans
+Disallow: /ignoring/human/orders
+Disallow: /harm/to/self
+
+# Disable Wagtail and Django admin
+Disallow: /admin/
+Disallow: /django-admin/
