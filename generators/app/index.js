@@ -121,6 +121,13 @@ module.exports = class extends Generator {
     if (this.options.skipInstall) {
       this.log('Finished! Run ' + chalk.green('docker-compose up') + ' to get started.');
     } else {
+      this.log(chalk.yellow('Generating lock files.'));
+      this.spawnCommandSync('docker-compose', ['run', '--rm', 'django', 'pipenv', 'lock']);
+      this.spawnCommandSync('docker-compose', ['run', '--rm', 'gulp', 'npm', 'install']);
+
+      this.log(chalk.yellow('Migrating database.'));
+      this.spawnCommandSync('docker-compose', ['run', '--rm', 'django', 'pipenv', 'run', 'python', 'manage.py', 'migrate']);
+
       this.log(chalk.yellow('Starting containers using docker-compose.'));
       this.spawnCommandSync('docker-compose', ['up']);
     }

@@ -10,7 +10,7 @@ RUN mkdir /app
 WORKDIR /app
 
 # Install Python dependencies
-ADD Pipfile Pipfile.lock ./
+ADD Pipfile Pipfile
 RUN pipenv install --dev --skip-lock
 
 ADD . /app/
