@@ -11,7 +11,7 @@ django = "*"
 wagtail = "*"
 django-environ = "*"
 django-inline-svg = "*"
-"psycopg2" = "*"
+"psycopg2-binary" = "*"
 uwsgi = "*"
 whitenoise = "*"
 
