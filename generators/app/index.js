@@ -46,6 +46,7 @@ module.exports = class extends Generator {
   project() {
     const dotfiles = [
       '_buildpacks',
+      '_dockerignore',
       '_editorconfig',
       '_env.sample',
       '_flake8',
@@ -117,12 +118,11 @@ module.exports = class extends Generator {
   }
 
   install() {
-    if (!this.options.skipInstall) {
-      this.npmInstall();
-
-      this.log(chalk.yellow('Installing Python dependencies with pipenv.'));
-      this.spawnCommandSync('pip', ['install', 'pipenv']);
-      this.spawnCommandSync('pipenv', ['install', '--dev']);
+    if (this.options.skipInstall) {
+      this.log('Finished! Run ' + chalk.green('docker-compose up') + ' to get started.');
+    } else {
+      this.log(chalk.yellow('Starting containers using docker-compose.'));
+      this.spawnCommandSync('docker-compose', ['up']);
     }
   }
 };

@@ -1,0 +1,7 @@
+node_modules
+staticfiles
+media_test
+media
+private_test
+private
+tmp

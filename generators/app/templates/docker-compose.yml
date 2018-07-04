@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  django:
+    build:
+      context: .
+      dockerfile: Dockerfile.django
+    command: ./bin/wait-for-postgres -- pipenv run python manage.py runserver 0.0.0.0:8000
+    environment:
+      - ALLOWED_HOSTS=django,localhost
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/postgres
+      - DEBUG=True
+      - DJANGO_ENV=development
+      - SECRET_KEY='dev-key'
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+  gulp:
+    build:
+      context: .
+      dockerfile: Dockerfile.gulp
+    command: gulp
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - .:/app
+      - node_modules:/app/node_modules
+    ports:
+      - "3000:3000"
+
+volumes:
+  pgdata:
+  node_modules:
