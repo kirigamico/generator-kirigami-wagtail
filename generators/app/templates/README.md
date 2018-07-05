@@ -80,4 +80,4 @@ $ npm run lint          # run all linters
 The app is configured to be deployed to Heroku/Dokku. But don't forget to:
 
 1. Create a Postgres database and link it. Make sure `DATABASE_URL` gets set.
-2. Set `ALLOWED_HOST=localhost,.yourdomain.com`, `DJANGO_ENV=production`, `DEBUG=False`, and `DISABLE_COLLECTSTATIC=1`
+2. Set `SECRET_KEY=<super-secret-key>`, `ALLOWED_HOSTS=localhost,.yourdomain.com`, `DJANGO_ENV=production`, `DEBUG=False`, and `DISABLE_COLLECTSTATIC=1`
