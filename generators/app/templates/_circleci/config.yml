@@ -1,0 +1,66 @@
+version: 2
+jobs:
+  lint:
+    docker:
+      - image: circleci/python:3.6-jessie-node-browsers
+    steps:
+      - checkout
+      - run:
+          name: Install lint dependencies
+          command: |
+            python3 -m venv venv
+            . venv/bin/activate
+            pip install flake8
+            npm install sass-lint eslint
+      - run:
+          name: Run linters
+          command: |
+            . venv/bin/activate
+            npm run lint
+  test:
+    docker:
+      - image: circleci/python:3.6-jessie-node-browsers
+      - image: circleci/postgres:9-alpine-ram
+    environment:
+      POSTGRES_DB: circle_test
+      DATABASE_URL: postgresql://root@127.0.0.1:5432/circle_test
+      DJANGO_ENV: development
+      SECRET_KEY: test-key
+    steps:
+      - checkout
+      - run:
+          name: Install python dependencies
+          command: |
+            pip install pipenv
+            pipenv install --dev --deploy
+      - run:
+          name: Run tests
+          command: |
+            source $(pipenv --venv)/bin/activate
+            python manage.py check
+            python manage.py makemigrations --check --noinput
+            python manage.py test
+  deploy:
+    docker:
+      - image: docker:stable-git
+    steps:
+      - checkout
+      - add_ssh_keys
+      - run:
+          name: Deploy to Dokku
+          command: |
+            ssh-keyscan -H $DOKKU_HOST >> ~/.ssh/known_hosts
+            git push --force dokku@$DOKKU_HOST:$DOKKU_APP_NAME HEAD:refs/heads/master
+workflows:
+  version: 2
+  lint-test-deploy:
+    jobs:
+      - lint
+      - test
+      - deploy:
+          requires:
+            - lint
+            - test
+          filters:
+            branches:
+              only: develop

@@ -46,6 +46,7 @@ module.exports = class extends Generator {
   project() {
     const dotfiles = [
       '_buildpacks',
+      '_circleci',
       '_dockerignore',
       '_editorconfig',
       '_env.sample',
