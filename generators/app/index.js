@@ -46,7 +46,7 @@ module.exports = class extends Generator {
   project() {
     const dotfiles = [
       '_buildpacks',
-      '_circleci',
+      '_circleci_config.yml',
       '_dockerignore',
       '_editorconfig',
       '_env.sample',
@@ -71,6 +71,12 @@ module.exports = class extends Generator {
         this.destinationPath(dotfile.replace('_', '.'))
       );
     }
+
+    // Copy special dotfolder
+    this.fs.copy(
+      this.templatePath('_circleci_config.yml'),
+      this.destinationPath('.circleci/config.yml')
+    );
 
     this.fs.copyTpl(
       this.templatePath('_env.sample'),
