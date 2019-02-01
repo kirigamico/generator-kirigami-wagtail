@@ -1,0 +1,7 @@
+#!/bin/sh
+
+alias dj="python manage.py"
+alias djrun="python manage.py runserver 0.0.0.0:8000"
+alias fab="invoke"
+
+source $(pipenv --venv)/bin/activate
