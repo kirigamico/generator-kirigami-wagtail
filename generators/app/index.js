@@ -17,7 +17,7 @@ module.exports = class extends Generator {
       type: 'input',
       name: 'name',
       message: 'Your project name',
-      default: path.basename(process.cwd()),
+      default: path.basename(process.cwd()).replace('.', ''),
     }, {
       type: 'input',
       name: 'description',
@@ -46,7 +46,6 @@ module.exports = class extends Generator {
   project() {
     const dotfiles = [
       '_buildpacks',
-      '_circleci_config.yml',
       '_dockerignore',
       '_editorconfig',
       '_env.sample',
@@ -55,7 +54,8 @@ module.exports = class extends Generator {
       '_sass-lint.yml',
     ];
 
-    const ignoredDotfiles = dotfiles.map(path => this.templatePath(path));
+    const ignoredDotfiles = dotfiles.map(path => this.templatePath(path))
+    ignoredDotfiles.push(this.templatePath('_circleci_config.yml'));
 
     // Copy all files except some
     this.fs.copy(
