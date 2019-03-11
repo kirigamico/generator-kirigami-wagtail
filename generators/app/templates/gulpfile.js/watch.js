@@ -5,14 +5,26 @@ const svg = require('./svg')
 const {compiler} = require('./scripts')
 const {watch} = require('gulp')
 
-function watchTask() {
-  const bs = browserSync.get('BrowserSync')
-  watch('static/styles/**/*.scss', styles)
-  watch('static/images/**/*.{jpg,png}', images)
-  watch('static/svg/**/*.svg', svg)
-  watch('**/*.html', () => bs.reload())
+const bs = browserSync.get('BrowserSync')
 
-  compiler.watch({}, () => {
+function reload(done) {
+  bs.reload()
+  done()
+}
+
+function watchTask() {
+  const watchOptions = {
+    usePolling: true,
+  }
+  watch('static/styles/**/*.scss', watchOptions, styles)
+  watch('static/images/**/*.{jpg,png}', watchOptions, images)
+  watch('static/svg/**/*.svg', watchOptions, svg)
+  watch('apps/**/*.html', watchOptions, reload)
+  watch('templates/**/*.html', watchOptions, reload)
+
+  compiler.watch({
+    poll: 500,
+  }, () => {
     bs.reload()
   })
 }

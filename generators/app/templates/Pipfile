@@ -24,9 +24,9 @@ whitenoise = "*"
 [dev-packages]
 
 "flake8" = "*"
-SQLAlchemy = '1.2.5'
-SQLAlchemy-Utils = "0.33.1"
+SQLAlchemy = "==1.2.5"
+SQLAlchemy-Utils = "==0.33.1"
 honcho = "*"
 ipdb = "*"
 ipython = "*"
-stellar = "0.4.5"
+stellar = "==0.4.5"
