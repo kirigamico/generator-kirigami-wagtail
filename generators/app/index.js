@@ -98,6 +98,12 @@ module.exports = class extends Generator {
       this.destinationPath(this.props.nameSnake),
       this.props.context
     );
+
+    this.fs.copyTpl(
+      this.templatePath('stellar.yaml'),
+      this.destinationPath('stellar.yaml'),
+      this.props.context
+    );
   }
 
   frontend() {
