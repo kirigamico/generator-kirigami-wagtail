@@ -23,7 +23,7 @@ jobs:
       - image: circleci/postgres:9-alpine-ram
     environment:
       POSTGRES_DB: circle_test
-      DATABASE_URL: postgresql://root@127.0.0.1:5432/circle_test
+      DATABASE_URL: postgresql://postgres@127.0.0.1:5432/circle_test
       DJANGO_ENV: development
       SECRET_KEY: test-key
     steps:
